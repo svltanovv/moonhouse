@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Property — Moonhouse Investments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ─── PROPERTY HERO ─────────────────────────────────── */
+.pd-hero {
+  padding-top: 88px;
+  height: 80vh;
+  min-height: 540px;
+  max-height: 780px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.pd-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 8s ease;
+}
+.pd-hero-bg:hover { transform: scale(1.04); }
+.pd-hero-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,14,23,0.10) 0%,
+    rgba(8,14,23,0.25) 40%,
+    rgba(8,14,23,0.80) 100%
+  );
+}
+.pd-hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 80px 56px;
+}
+.pd-hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.pd-hero-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(32px, 4.5vw, 62px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.pd-hero-location {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+.pd-hero-price-row { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+.pd-hero-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.pd-hero-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ─── STATS BAR ─────────────────────────────────────── */
+.pd-stats {
+  background: var(--dark);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 80px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.pd-stat {
+  flex-shrink: 0;
+  padding: 20px 32px 20px 0;
+  margin-right: 32px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.pd-stat:last-child { border-right: none; }
+.pd-stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.pd-stat-val {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ─── BODY LAYOUT ────────────────────────────────────── */
+.pd-body {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 0;
+  align-items: start;
+  background: var(--cream);
+}
+
+/* ─── MAIN COL ───────────────────────────────────────── */
+.pd-main { padding: 56px 64px 80px 80px; }
+.pd-section { margin-bottom: 56px; }
+.pd-section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.pd-about-text {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.85;
+}
+.pd-about-text p { margin-bottom: 18px; }
+.pd-about-text p:last-child { margin-bottom: 0; }
+
+/* Features grid */
+.pd-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.pd-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text);
+}
+.pd-feature-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pd-feature-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* Gallery */
+.pd-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.pd-gallery-item {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.pd-gallery-item:first-child {
+  grid-column: span 2;
+  height: 240px;
+}
+.pd-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.2s;
+}
+.pd-gallery-item:hover::after { background: rgba(0,0,0,0.15); }
+
+/* Lightbox overlay */
+#lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.93);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#lb-overlay.open { display: flex; }
+#lb-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+#lb-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  font-size: 32px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+#lb-close:hover { color: #fff; }
+.lb-nav {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+.lb-nav button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 8px 24px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lb-nav button:hover { background: var(--gold); border-color: var(--gold); }
+
+/* Location */
+.pd-map-frame {
+  width: 100%;
+  height: 300px;
+  border: 1px solid var(--border);
+  display: block;
+}
+.pd-map-address {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pd-map-address a {
+  font-size: 12px;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* ─── ASIDE ──────────────────────────────────────────── */
+.pd-aside {
+  padding: 40px 32px 80px;
+  border-left: 1px solid var(--border);
+  background: var(--white);
+}
+.pd-price-card {
+  background: var(--dark);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+.pd-price-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 8px;
+}
+.pd-price-big {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.pd-price-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+.pd-price-features { list-style: none; margin-bottom: 24px; }
+.pd-price-features li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.55);
+}
+.pd-price-features li span:last-child { color: #fff; font-weight: 500; }
+
+/* Inquiry form */
+.pd-form-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.pd-form-group { margin-bottom: 14px; }
+.pd-form-group label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.pd-form-group input,
+.pd-form-group select,
+.pd-form-group textarea {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 11px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.pd-form-group input:focus,
+.pd-form-group select:focus,
+.pd-form-group textarea:focus { border-color: var(--gold); }
+.pd-form-group textarea { resize: vertical; min-height: 80px; }
+.pd-form-group select option { background: #fff; }
+
+.pd-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 28px 0;
+}
+
+/* Agent card */
+.pd-agent {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.pd-agent-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center top;
+  flex-shrink: 0;
+}
+.pd-agent-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+.pd-agent-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.pd-agent-contacts { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.pd-agent-contacts a {
+  font-size: 12px;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pd-agent-contacts a:hover { color: var(--gold); }
+.pd-agent-contacts svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+/* ─── SIMILAR ────────────────────────────────────────── */
+.pd-similar {
+  background: var(--cream);
+  padding: 72px 80px;
+  border-top: 1px solid var(--border);
+}
+.pd-similar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .pd-body { grid-template-columns: 1fr 300px; }
+  .pd-main { padding: 40px 32px 64px 40px; }
+}
+@media (max-width: 900px) {
+  .pd-hero { min-height: 60vh; }
+  .pd-hero-content { padding: 0 20px 36px; }
+  .pd-hero-name { font-size: clamp(24px, 7vw, 38px); }
+  .pd-hero-price { font-size: 22px; }
+  .pd-hero-badges { flex-wrap: wrap; gap: 6px; }
+  .pd-stats { padding: 0 20px; }
+  .pd-stat { padding: 14px 20px 14px 0; margin-right: 20px; }
+  .pd-body { grid-template-columns: 1fr; }
+  .pd-main { padding: 28px 20px 48px; }
+  .pd-aside { padding: 28px 20px; border-left: none; border-top: 1px solid var(--border); }
+  .pd-gallery { grid-template-columns: repeat(2, 1fr); }
+  .pd-gallery-item:first-child { grid-column: span 2; height: 200px; }
+  .pd-gallery-item { height: 140px; }
+  .pd-similar { padding: 40px 20px; }
+  .pd-similar-grid { grid-template-columns: 1fr; }
+  .pd-section { margin-bottom: 40px; }
+}
+@media (max-width: 580px) {
+  .pd-hero { min-height: 55vh; }
+  .pd-hero-name { font-size: clamp(20px, 6vw, 30px); }
+  .pd-hero-price { font-size: 20px; }
+  .pd-hero-content { padding: 0 16px 28px; }
+  .pd-stats { padding: 0 16px; }
+  .pd-stat { padding: 12px 16px 12px 0; margin-right: 16px; }
+  .pd-stat-label { font-size: 9px; }
+  .pd-stat-val { font-size: 13px; }
+  .pd-main { padding: 20px 16px 40px; }
+  .pd-aside { padding: 20px 16px; }
+  .pd-gallery { grid-template-columns: 1fr 1fr; }
+  .pd-gallery-item:first-child { height: 160px; }
+  .pd-gallery-item { height: 120px; }
+  .pd-price-big { font-size: 22px; }
+  .pd-similar { padding: 32px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="moonhouse-logo.svg" alt="Moonhouse Investments"></a>
+  <ul class="nav-links">
+    <li class="has-dropdown"><a href="projects.html" class="active">Projects ▾</a>
+      <ul class="dropdown">
+        <li><a href="projects.html">All Projects</a></li>
+        <li><a href="commercial.html">Commercial</a></li>
+        <li><a href="residential.html">Residential</a></li>
+        <li><a href="top-offers.html">Top Offers</a></li>
+      </ul>
+    </li>
+    <li><a href="investments.html">Investments</a></li>
+    <li><a href="citizenship.html">Citizenship &amp; Residence</a></li>
+    <li class="has-dropdown"><a href="about.html">About Us ▾</a>
+      <ul class="dropdown">
+        <li><a href="about.html">About Company</a></li>
+        <li><a href="about.html#team">Team</a></li>
+        <li><a href="about.html#partners">Partners</a></li>
+        <li><a href="about.html#reviews">Reviews</a></li>
+      </ul>
+    </li>
+    <li><a href="contacts.html">Contacts</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a href="tel:+971547563668" class="nav-phone">+971 54 756 3668</a>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- SOCIAL SIDEBAR -->
+<div class="social-sidebar">
+  <a href="https://wa.me/971547563668" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a href="https://t.me/moonhouseinvest" target="_blank" rel="noopener" title="Telegram"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+</div>
+
+<!-- HERO -->
+<div class="pd-hero" id="pd-hero">
+  <div class="pd-hero-bg" id="pd-hero-bg"></div>
+  <div class="pd-hero-grad"></div>
+  <div class="pd-hero-content">
+    <div class="pd-hero-badges" id="pd-badges"></div>
+    <h1 class="pd-hero-name" id="pd-name">Loading…</h1>
+    <p class="pd-hero-location" id="pd-location"></p>
+    <div class="pd-hero-price-row">
+      <span class="pd-hero-price" id="pd-price"></span>
+      <span class="pd-hero-status" id="pd-status-row"></span>
+    </div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;/&nbsp;
+  <a href="residential.html">Projects</a> &nbsp;/&nbsp;
+  <span id="pd-breadcrumb">Property</span>
+</div>
+
+<!-- STATS BAR -->
+<div class="pd-stats" id="pd-stats"></div>
+
+<!-- BODY -->
+<div class="pd-body">
+
+  <!-- MAIN -->
+  <div class="pd-main">
+
+    <!-- ABOUT -->
+    <div class="pd-section" id="sec-about">
+      <p class="pd-section-title">About the project</p>
+      <div class="pd-about-text" id="pd-about"></div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="pd-section" id="sec-features">
+      <p class="pd-section-title">Features &amp; amenities</p>
+      <div class="pd-features-grid" id="pd-features"></div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="pd-section" id="sec-gallery">
+      <p class="pd-section-title">Gallery</p>
+      <div class="pd-gallery" id="pd-gallery"></div>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="pd-section" id="sec-location">
+      <p class="pd-section-title">Location</p>
+      <iframe class="pd-map-frame" id="pd-map" frameborder="0" scrolling="no" title="Property location"></iframe>
+      <div class="pd-map-address">
+        <span id="pd-address"></span>
+        <a id="pd-map-link" href="#" target="_blank" rel="noopener">Open in maps →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ASIDE -->
+  <aside class="pd-aside">
+
+    <!-- Price card -->
+    <div class="pd-price-card">
+      <p class="pd-price-label">Price</p>
+      <p class="pd-price-big" id="pd-aside-price"></p>
+      <p class="pd-price-note" id="pd-aside-note"></p>
+      <ul class="pd-price-features" id="pd-aside-features"></ul>
+      <button class="btn-gold" style="width:100%;justify-content:center;" onclick="document.getElementById('inquiry-name').focus()">Request consultation</button>
+    </div>
+
+    <!-- Inquiry form -->
+    <p class="pd-form-title">Get more information</p>
+    <form id="inquiry-form" onsubmit="handleInquiry(event)">
+      <div class="pd-form-group">
+        <label>Your name</label>
+        <input type="text" id="inquiry-name" placeholder="Alexander Smith">
+      </div>
+      <div class="pd-form-group">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="+1 234 567 8900">
+      </div>
+      <div class="pd-form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="pd-form-group">
+        <label>Interest</label>
+        <select>
+          <option>Buy for own use</option>
+          <option>Investment / rental income</option>
+          <option>Residence permit</option>
+          <option>General inquiry</option>
+        </select>
+      </div>
+      <div class="pd-form-group">
+        <label>Message</label>
+        <textarea id="inquiry-message" placeholder="Any questions or requirements…"></textarea>
+      </div>
+      <button type="submit" class="btn-gold" style="width:100%;justify-content:center;">Send inquiry</button>
+      <p id="inquiry-success" style="display:none;text-align:center;color:var(--gold);font-size:13px;margin-top:12px;">Thank you! We'll contact you shortly.</p>
+    </form>
+
+    <div class="pd-divider"></div>
+
+    <!-- Agent -->
+    <div class="pd-agent">
+      <div class="pd-agent-photo" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80')"></div>
+      <div>
+        <p class="pd-agent-name">Michael Petrov</p>
+        <p class="pd-agent-role">Senior Property Consultant</p>
+      </div>
+    </div>
+    <div class="pd-agent-contacts">
+      <a href="https://wa.me/971547563668" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: +971 54 756 3668
+      </a>
+      <a href="tel:+971547563668">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +971 54 756 3668
+      </a>
+      <a href="mailto:info@moonhouse.investments">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        info@moonhouse.investments
+      </a>
+    </div>
+
+  </aside>
+</div>
+
+<!-- SIMILAR PROPERTIES -->
+<div class="pd-similar">
+  <p class="section-label">More projects</p>
+  <h2 class="section-title">Similar properties</h2>
+  <div class="pd-similar-grid" id="pd-similar"></div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-left">
+    <div>
+      <p class="newsletter-label-small">Stay informed</p>
+      <h2 class="newsletter-title">Subscribe to our newsletter</h2>
+      <p class="newsletter-sub">Get the latest investment opportunities, market insights and exclusive deals — straight to your inbox.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="Your email address">
+      <button type="submit" class="btn-gold">Subscribe</button>
+    </form>
+  </div>
+  <div class="footer-map-box">
+    <p class="newsletter-label-small">Our office</p>
+    <p class="map-address">UAE, Abu Dhabi, Dar Al Salam Building, Liwa St. Office 221</p>
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=54.352%2C24.474%2C54.372%2C24.494&layer=mapnik&marker=24.484%2C54.362" frameborder="0" scrolling="no" title="Office location"></iframe>
+    <a href="https://www.openstreetmap.org/?mlat=24.484&mlon=54.362#map=16/24.484/54.362" target="_blank" rel="noopener" class="map-link">Open in maps →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="footer-logo"><img src="moonhouse-logo.svg" alt="Moonhouse Investments"></a>
+      <p class="footer-about">We help private clients invest in international real estate. Offices in Dubai, New York, Astana and Singapore. Founded 1998.</p>
+      <div class="footer-contact">
+        <div>UAE, Abu Dhabi, Dar Al Salam Building, Liwa St. Office 221</div>
+        <div><a href="tel:+971547563668">+971 54 756 3668</a></div>
+        <div><a href="mailto:info@moonhouse.investments">info@moonhouse.investments</a></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Properties</h4>
+      <ul>
+        <li><a href="residential.html">Residential projects</a></li>
+        <li><a href="commercial.html">Commercial projects</a></li>
+        <li><a href="investments.html">Investment projects</a></li>
+        <li><a href="top-offers.html">Top Offers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#team">Team</a></li>
+        <li><a href="about.html#partners">Partners</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Citizenship &amp; Residence</h4>
+      <ul>
+        <li><a href="citizenship.html">Residence programs</a></li>
+        <li><a href="citizenship.html#citizenship">Citizenship by investment</a></li>
+        <li><a href="citizenship.html#uae">UAE Golden Visa</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Moonhouse Investments Limited. All rights reserved.</span>
+    <span><a href="#" style="color:rgba(255,255,255,0.25);text-decoration:none;">Privacy Policy</a></span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb-overlay" role="dialog" aria-modal="true">
+  <button id="lb-close" onclick="closeLightbox()" aria-label="Close">×</button>
+  <img id="lb-img" src="" alt="Property photo">
+  <div class="lb-nav">
+    <button onclick="lbNav(-1)">← Prev</button>
+    <button onclick="lbNav(1)">Next →</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+// ═══════════════════════════════════════════════════
+//  PROPERTY DATABASE
+// ═══════════════════════════════════════════════════
+var BADGE_CLASS = {
+  'Hot offer':'badge-hot','Top offer':'badge-top','Sea view':'badge-sea',
+  'Investments':'badge-invest','Sold':'badge-sold','Popular':'badge-top',
+  'Residence permit':'badge-top'
+};
+
+var PROPERTIES = {
+
+  'aldar-haven-verdes': {
+    name: 'Aldar Haven Verdes',
+    developer: 'Aldar Properties',
+    location: 'UAE, Dubai, Dubailand',
+    country: 'UAE', region: 'Dubai',
+    price: '$269,500 – $762,300', priceNote: 'USD',
+    status: 'construction', completion: 'Q3 2027',
+    type: 'Residential', beds: '1 – 4 bedrooms', area: '70 – 320 m²',
+    units: '580+ units', roi: '7 – 9% p.a.',
+    badges: ['Hot offer', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80'
+    ],
+    about: '<p>Aldar Haven Verdes is a prestigious residential community by Aldar Properties — one of the UAE\'s most trusted and largest developers — located in the thriving Dubailand district of Dubai. This expansive, nature-inspired development redefines modern family living with a seamless blend of green spaces and premium urban amenities.</p><p>The development centres around landscaped parks, tree-lined promenades and multiple swimming pools. A state-of-the-art wellness centre, yoga studios, and outdoor fitness areas cater to an active lifestyle, while an array of cafes, restaurants and retail outlets ensure all daily needs are met within the community.</p><p>Residences range from elegant 1-bedroom apartments to generous 4-bedroom townhouses, all delivered with smart home technology and premium Italian-imported fixtures. The project includes a fully operational international school and kindergarten, making it an ideal long-term investment for families relocating to Dubai.</p>',
+    features: ['Swimming pools','Wellness centre','Landscaped gardens','Retail & cafes','International school','Kindergarten','Sports courts','Cycling paths','BBQ areas','Covered parking','Smart home systems','24/7 security','Dog-friendly zones','Community clubhouse'],
+    mapBbox: '55.131%2C25.015%2C55.211%2C25.085', mapLat: '25.052', mapLon: '55.171',
+    address: 'Dubailand, Dubai, UAE',
+    similar: ['the-source','gardenia-bay','yas-golf-collection']
+  },
+
+  'the-source': {
+    name: 'The Source (SRC)',
+    developer: 'Aldar Properties',
+    location: 'UAE, Abu Dhabi, Saadiyat Island',
+    country: 'UAE', region: 'Abu Dhabi',
+    price: '$626,000 – $1.83M', priceNote: 'USD',
+    status: 'construction', completion: 'Q4 2026',
+    type: 'Residential', beds: '1 – 4 bedrooms', area: '85 – 380 m²',
+    units: '400+ units', roi: '8 – 10% p.a.',
+    badges: ['Top offer', 'Investments'],
+    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80'
+    ],
+    about: '<p>The Source (SRC) occupies a prime position in the Saadiyat Grove district of Saadiyat Island — Abu Dhabi\'s foremost cultural and lifestyle destination. Situated within walking distance of the Zayed National Museum, the Museum of Natural History and the Abrahamic Family House, the development places residents at the heart of global culture.</p><p>Designed as a mixed-use community, The Source integrates residences, boutique retail, dining terraces and cultural amenities into a single cohesive masterplan. The architecture draws on natural materials and the island\'s maritime heritage, creating buildings that feel both contemporary and rooted in place.</p><p>Apartments are available in 1 to 4-bedroom configurations with floor-to-ceiling glazing, private terraces and premium kitchen appliances. Given the limited supply of freehold property on Saadiyat Island, investment fundamentals are exceptionally strong, with consistent rental demand from international professionals and diplomats.</p>',
+    features: ['Rooftop infinity pool','Cultural district location','Private terraces','Co-working spaces','Concierge service','Underground parking','Smart home tech','Fine dining nearby','Museum access','Beach club membership','Children\'s play areas','24/7 security'],
+    mapBbox: '54.396%2C24.519%2C54.436%2C24.549', mapLat: '24.534', mapLon: '54.416',
+    address: 'Saadiyat Grove, Saadiyat Island, Abu Dhabi',
+    similar: ['aldar-haven-verdes','gardenia-bay','manarat-living']
+  },
+
+  'gardenia-bay': {
+    name: 'Gardenia Bay (GBY)',
+    developer: 'Aldar Properties',
+    location: 'UAE, Abu Dhabi, Yas Island',
+    country: 'UAE', region: 'Abu Dhabi',
+    price: '$220,000 – $844,813', priceNote: 'USD',
+    status: 'construction', completion: 'Q2 2027',
+    type: 'Residential', beds: 'Studios – 3 bedrooms', area: '40 – 190 m²',
+    units: '1,400+ units', roi: '7 – 8% p.a.',
+    badges: ['Top offer'],
+    img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80'
+    ],
+    about: '<p>Gardenia Bay is an exclusive waterfront residential development on Yas Island — Abu Dhabi\'s premier leisure and entertainment destination — by Aldar Properties. The project enjoys direct access to the Arabian Gulf shore, offering residents unobstructed sea views and a beach lifestyle unlike anything else on the island.</p><p>The development is ideally situated minutes from Yas Waterworld, Ferrari World, Warner Bros. World and Yas Mall, as well as the Formula 1 Yas Marina Circuit. This combination of leisure infrastructure makes Gardenia Bay exceptionally attractive both for owner-occupiers seeking a vibrant lifestyle and investors targeting the short-term rental market.</p><p>Units range from studios to 3-bedroom apartments, designed with expansive glazed facades that maximise water views. Each unit comes with smart home features, a private balcony or terrace, and access to extensive communal amenities including a lagoon pool, private beach, gym and children\'s play zones.</p>',
+    features: ['Private beach','Lagoon pool','Sea views','Smart home tech','Gym & wellness','Theme parks nearby','Retail & dining','Children\'s facilities','Covered parking','Cycling paths','BBQ areas','24/7 security'],
+    mapBbox: '54.583%2C24.494%2C54.623%2C24.524', mapLat: '24.509', mapLon: '54.603',
+    address: 'Yas Island, Abu Dhabi, UAE',
+    similar: ['yas-golf-collection','the-source','bay-views']
+  },
+
+  'yas-golf-collection': {
+    name: 'Yas Golf Collection (YGC)',
+    developer: 'Aldar Properties',
+    location: 'UAE, Abu Dhabi, Yas Island',
+    country: 'UAE', region: 'Abu Dhabi',
+    price: '$376,000 – $600,000', priceNote: 'USD',
+    status: 'construction', completion: 'Q3 2025',
+    type: 'Residential', beds: '1 – 3 bedrooms', area: '80 – 210 m²',
+    units: '1,062 units', roi: '8 – 10% p.a.',
+    badges: ['Sea view', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80'
+    ],
+    about: '<p>Yas Golf Collection rises above Yas Links Golf Course — the only links-style golf course in the Middle East — on the spectacular Yas Island waterfront. The 1,062-unit development delivers unparalleled views across fairways, mangrove channels and the open Arabian Gulf, creating an unmatched residential setting in Abu Dhabi.</p><p>The collection comprises 11 mid-rise buildings arranged to maximise panoramic views for every unit. Residences are finished to an elevated specification with Italian marble, Gaggenau appliances and bespoke joinery. Residents also receive exclusive access to the Yas Links clubhouse and preferred tee times.</p><p>For investors, Yas Golf Collection offers compelling short-let potential driven by year-round leisure tourism and Formula 1 week demand, which regularly pushes rental yields to double-digit returns. The proximity to Abu Dhabi International Airport (15 minutes) adds further appeal for business travellers.</p>',
+    features: ['Golf course views','Yas Links access','Sea & mangrove views','Infinity rooftop pool','Italian marble finishes','Gaggenau appliances','Concierge','Private parking','Smart home','Gym & spa','Children\'s zone','24/7 security'],
+    mapBbox: '54.580%2C24.490%2C54.620%2C24.520', mapLat: '24.505', mapLon: '54.600',
+    address: 'Yas Links Golf Course, Yas Island, Abu Dhabi',
+    similar: ['gardenia-bay','the-source','aldar-haven-verdes']
+  },
+
+  'bay-views': {
+    name: 'Bay Views (BVS)',
+    developer: 'RAK Properties',
+    location: 'UAE, Ras Al Khaimah, Mina Al Arab',
+    country: 'UAE', region: 'Ras Al Khaimah',
+    price: '$144,300 – $381,000', priceNote: 'USD',
+    status: 'construction', completion: 'Q3 2025',
+    type: 'Residential', beds: '1 – 3 bedrooms', area: '60 – 175 m²',
+    units: '320 units', roi: '8 – 12% p.a.',
+    badges: ['Sea view'],
+    img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80'
+    ],
+    about: '<p>Bay Views is a luxury residential project within the master-planned Mina Al Arab community on the Ras Al Khaimah coastline. Positioned directly on the Arabian Gulf, the development enjoys sweeping views across the sea and the dramatic Hajar Mountains — a combination unique in the UAE.</p><p>Ras Al Khaimah has emerged as one of the fastest-growing investment destinations in the Gulf, with the forthcoming Wynn Al Marjan Island casino resort expected to transform the emirate\'s tourism economy from 2027 onwards. Bay Views residents will be ideally positioned to capitalise on this transformation.</p><p>The project offers generous 1 to 3-bedroom apartments with private sea-view balconies, high-quality fixtures and fittings, and access to a beachfront clubhouse, pools and landscaped waterfront promenade. RAK Properties\' proven track record and the current price point make this one of the best-value waterfront buys in the UAE.</p>',
+    features: ['Direct sea frontage','Mountain views','Beachfront clubhouse','Swimming pools','Gym','Waterfront promenade','Marina access','Retail & cafes','Children\'s play','Covered parking','24/7 security','Low service charges'],
+    mapBbox: '55.956%2C25.807%2C55.996%2C25.837', mapLat: '25.822', mapLon: '55.976',
+    address: 'Mina Al Arab, Ras Al Khaimah, UAE',
+    similar: ['gardenia-bay','yas-golf-collection','aldar-haven-verdes']
+  },
+
+  'manarat-living': {
+    name: 'Manarat Living',
+    developer: 'Aldar Properties',
+    location: 'UAE, Abu Dhabi, Saadiyat Island',
+    country: 'UAE', region: 'Abu Dhabi',
+    price: 'from $286,000', priceNote: 'USD',
+    status: 'construction', completion: 'Q1 2026',
+    type: 'Residential', beds: '1 – 2 bedrooms', area: '30 – 148 m²',
+    units: '700+ units', roi: '7 – 9% p.a.',
+    badges: ['Hot offer'],
+    img: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80'
+    ],
+    about: '<p>Manarat Living is a landmark residential project on Saadiyat Island\'s Cultural District, steps from the Louvre Abu Dhabi and the future Guggenheim Abu Dhabi — one of the world\'s most anticipated cultural institutions. The development occupies one of the most culturally significant addresses in the Middle East.</p><p>Designed to complement the island\'s world-class museum and arts environment, Manarat Living features architecture inspired by light and material. Residences are designed as art-gallery-quality spaces with high ceilings, polished concrete floors and generous natural light. The building includes a curated selection of galleries, studios and creative workspaces at ground level.</p><p>One and two-bedroom apartments, ranging from 30 to 148 m², are available at exceptionally competitive entry prices for this address. With strong anticipated rental demand from museum staff, diplomats and international arts professionals, yields are expected to remain robust post-completion.</p>',
+    features: ['Louvre Abu Dhabi nearby','Art gallery at ground level','High ceilings','Polished concrete floors','Creative workspaces','Rooftop terrace','Gym','Concierge','Smart home','Covered parking','Museum shuttle','24/7 security'],
+    mapBbox: '54.399%2C24.524%2C54.439%2C24.554', mapLat: '24.539', mapLon: '54.419',
+    address: 'Cultural District, Saadiyat Island, Abu Dhabi',
+    similar: ['the-source','aldar-haven-verdes','gardenia-bay']
+  },
+
+  'cassia-rama-9': {
+    name: 'Cassia Rama 9',
+    developer: 'Banyan Tree Group',
+    location: 'Thailand, Bangkok, Rama 9',
+    country: 'Thailand', region: 'Bangkok',
+    price: '$136,930 – $273,900', priceNote: 'USD',
+    status: 'completed', completion: 'Q2 2024',
+    type: 'Residential', beds: '1 – 2 bedrooms', area: '35 – 82 m²',
+    units: '700 units', roi: '6 – 8% p.a.',
+    badges: ['Hot offer', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80'
+    ],
+    about: '<p>Cassia Rama 9 is a serviced-apartment concept by Banyan Tree Group — the globally renowned hospitality brand — set in Bangkok\'s dynamic Rama 9 new CBD corridor. The project brings hotel-standard living to a residential product, offering buyers both a premium lifestyle and professionally managed rental income.</p><p>The Rama 9 district has experienced sustained capital appreciation over the past decade, driven by major infrastructure investments including the Airport Rail Link, MRT Orange Line and Thailand\'s largest retail development, The Mall Group Rama 9. The address positions residents at the centre of Bangkok\'s emerging second CBD.</p><p>Completed in Q2 2024 and now fully operational, Cassia Rama 9 offers immediate rental income with the Banyan Tree rental management programme. Historical occupancy rates exceed 78%, delivering stable and predictable returns for investors across the globe.</p>',
+    features: ['Banyan Tree management','Hotel-grade furnishings','MRT Orange Line nearby','Infinity rooftop pool','Skybar','Gym & spa','Co-working lounge','Concierge','Valet parking','Smart home','Restaurants on-site','24/7 security'],
+    mapBbox: '100.560%2C13.738%2C100.600%2C13.768', mapLat: '13.753', mapLon: '100.580',
+    address: 'Rama 9 Road, Huai Khwang, Bangkok 10310, Thailand',
+    similar: ['sunny-moon','laguna-lakelands','sunny-ocean-berawa']
+  },
+
+  'sunny-moon': {
+    name: 'Sunny Moon (SMN)',
+    developer: 'Sunny Group',
+    location: 'Thailand, Phuket, Rawai',
+    country: 'Thailand', region: 'Phuket',
+    price: 'from $121,300', priceNote: 'USD',
+    status: 'construction', completion: 'Q4 2025',
+    type: 'Residential', beds: 'Studios – 2 bedrooms', area: '33 – 134 m²',
+    units: '228 apartments', roi: '10 – 12% p.a.',
+    badges: ['Sea view', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80',
+      'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80'
+    ],
+    about: '<p>Sunny Moon is a contemporary residential development in Rawai — one of Phuket\'s most sought-after neighbourhoods, renowned for its authentic Thai character, seafood restaurants, and proximity to the Andaman Sea. The project is positioned just 750 metres from Rawai Beach, offering an effortlessly beachside lifestyle at an accessible price point.</p><p>The development comprises two buildings with 228 apartments spread across 8 floors. Unit sizes range from efficient studios (33 m²) to spacious 2-bedroom apartments (134 m²), all designed with tropical-modern interiors featuring natural timber, stone accents and expansive terraces to maximise the island\'s breezes.</p><p>Phuket\'s rental market is among the strongest in Southeast Asia, with tourism consistently exceeding 10 million visitors annually. Sunny Group\'s rental programme guarantees a minimum of 7% net return for the first 3 years, providing a secure foundation for investors entering the Thai property market.</p>',
+    features: ['750m from Rawai Beach','Sea views from upper floors','Guaranteed 7% ROI (3 yrs)','Rooftop infinity pool','Gym','Co-working space','Shuttle to beach','Restaurant on-site','Smart home','Long-term visa options','Full furnishing option','Property management'],
+    mapBbox: '98.282%2C7.775%2C98.322%2C7.805', mapLat: '7.790', mapLon: '98.302',
+    address: 'Rawai, Mueang Phuket District, Phuket 83130, Thailand',
+    similar: ['cassia-rama-9','laguna-lakelands','sunny-ocean']
+  },
+
+  'laguna-lakelands': {
+    name: 'Laguna Lakelands (LLR)',
+    developer: 'Laguna Resort & Hotels',
+    location: 'Thailand, Phuket, Laguna',
+    country: 'Thailand', region: 'Phuket',
+    price: '$250,000 – $530,000', priceNote: 'USD',
+    status: 'construction', completion: 'Q1 2025',
+    type: 'Residential', beds: '2 – 3 bedrooms', area: '100 – 220 m²',
+    units: '180 units', roi: '7 – 9% p.a.',
+    badges: ['Popular'],
+    img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80',
+      'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80'
+    ],
+    about: '<p>Laguna Lakelands is a low-rise lakeside residential development within the world-famous Laguna Phuket integrated resort complex — a 1,000-acre masterplan anchored by six Banyan Tree and Angsana hotels and the Laguna Golf Course. Residents enjoy direct access to all resort facilities and the 3km Bangtao Beach.</p><p>The development takes its name from the network of freshwater lagoons woven through the Laguna estate, which provide serene, park-like settings for each villa and apartment cluster. The architecture draws on Sino-Portuguese influences, complementing the heritage aesthetic of Phuket Town whilst delivering contemporary standards of finish and technology.</p><p>With proximity to Boat Avenue — Phuket\'s premier dining and lifestyle destination — and Central Porto de Phuket mall, Laguna Lakelands sits at the very heart of the island\'s most desirable lifestyle corridor. Limited unit count and controlled supply within the Laguna estate ensure long-term capital value preservation.</p>',
+    features: ['Lagoon & lake views','Bangtao Beach (800m)','Laguna Golf Course access','6 hotel pools access','Spa access','International school nearby','Boat Avenue dining','Multiple restaurants','Tennis courts','Cycling & jogging paths','Property management','Rental programme'],
+    mapBbox: '97.977%2C8.003%2C98.017%2C8.033', mapLat: '8.018', mapLon: '97.997',
+    address: 'Laguna Phuket, Cherng Talay, Thalang District, Phuket, Thailand',
+    similar: ['sunny-moon','cassia-rama-9','sunny-ocean-berawa']
+  },
+
+  'sunny-ocean-berawa': {
+    name: 'Sunny Ocean Berawa (SBW)',
+    developer: 'Sunny Group',
+    location: 'Indonesia, Bali, Canggu, Berawa',
+    country: 'Indonesia', region: 'Bali',
+    price: '$250,000 – $500,000', priceNote: 'USD',
+    status: 'completed', completion: 'Q1 2024',
+    type: 'Villas', beds: '2 – 4 bedrooms', area: '180 – 420 m²',
+    units: '30 villas', roi: '15 – 20% p.a.',
+    badges: ['Top offer'],
+    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80'
+    ],
+    about: '<p>Sunny Ocean Berawa is a collection of 30 premium villas set 3 minutes from Berawa Beach in Canggu — Bali\'s most vibrant and internationally connected neighbourhood. The development offers the authentic Bali lifestyle — lush tropical gardens, private pools and open-plan living — with infrastructure and finish standards suited to international owner-occupiers and high-volume short-stay renters.</p><p>Each villa features a private 8-metre infinity pool, open-plan living area with vaulted ceilings, and a fully equipped outdoor kitchen. Interiors blend contemporary design with traditional Balinese craftsmanship: hand-carved stone water features, locally sourced teak joinery and woven bamboo screens create a home that is unmistakably Balinese whilst meeting the expectations of sophisticated international guests.</p><p>Berawa is home to some of Bali\'s most celebrated beach clubs and restaurants, creating exceptional short-term rental demand. Average occupancy rates exceed 80% and nightly rates of $300–$600 deliver gross yields consistently above 15%. The project is completed and generating income, making it ideal for investors seeking immediate returns.</p>',
+    features: ['Private 8m infinity pool','3 min to Berawa Beach','Open-plan living','Vaulted timber ceilings','Outdoor kitchen','Lush tropical gardens','Airbnb-ready','Property management','High-speed WiFi','Smart home','Concierge','Legal freehold structure'],
+    mapBbox: '115.110%2C-8.677%2C115.150%2C-8.647', mapLat: '-8.662', mapLon: '115.130',
+    address: 'Jl. Pantai Berawa, Canggu, Kuta Utara, Badung Regency, Bali 80361',
+    similar: ['sunny-apart','sunny-ocean','cassia-rama-9']
+  },
+
+  'sunny-ocean': {
+    name: 'Sunny Ocean (SOP)',
+    developer: 'Sunny Group',
+    location: 'Indonesia, Bali, Bukit Peninsula',
+    country: 'Indonesia', region: 'Bali',
+    price: '$374,400 – $375,000', priceNote: 'USD',
+    status: 'construction', completion: 'Q4 2025',
+    type: 'Villas', beds: '2 – 3 bedrooms', area: '150 – 250 m²',
+    units: '18 villas', roi: '14 – 18% p.a.',
+    badges: ['Sea view'],
+    img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80'
+    ],
+    about: '<p>Sunny Ocean occupies one of the most dramatic cliff-top positions on the Bukit Peninsula — Bali\'s southernmost headland — just 250 metres from the Indian Ocean. The development comprises 18 exclusive villas with unobstructed ocean views, positioned to capture Bali\'s celebrated sunsets across the horizon.</p><p>The Bukit Peninsula is home to some of the world\'s most sought-after surf breaks — Uluwatu, Padang Padang, Bingin — and attracts a high-spending international traveller base seeking luxury villa experiences with direct ocean access. Rental rates for premium Bukit villas consistently command premium nightly rates, with strong demand year-round.</p><p>Each Sunny Ocean villa is designed on a single level to maximise the view: master bedroom, living pavilion and infinity pool all face west over the ocean. Modern Balinese architecture uses volcanic stone, local hardwoods and handmade terracotta to create a property of genuine luxury and character.</p>',
+    features: ['Ocean cliff position','250m to Indian Ocean','Surf break proximity','West-facing sunset views','Private infinity pool','Single-level design','Volcanic stone construction','Local hardwood interiors','Outdoor living pavilion','Property management','Short-let optimised','Sea view from every room'],
+    mapBbox: '115.078%2C-8.829%2C115.118%2C-8.799', mapLat: '-8.814', mapLon: '115.098',
+    address: 'Pecatu, Kuta Selatan, Badung Regency, Bali 80361',
+    similar: ['sunny-ocean-berawa','sunny-apart','cassia-rama-9']
+  },
+
+  'sunny-apart': {
+    name: 'Sunny Apart (SPT)',
+    developer: 'Sunny Group',
+    location: 'Indonesia, Bali, Canggu',
+    country: 'Indonesia', region: 'Bali',
+    price: 'from $180,000', priceNote: 'USD',
+    status: 'completed', completion: 'Q4 2023',
+    type: 'Apartments', beds: '1 – 2 bedrooms', area: '43 – 85 m²',
+    units: '52 apartments', roi: '12 – 16% p.a.',
+    badges: ['Top offer'],
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80'
+    ],
+    about: '<p>Sunny Apart is a boutique apartment project in the heart of Canggu, Bali\'s most creative and cosmopolitan neighbourhood, positioned just 200 metres from Batu Belig Beach. The building rises to 4 floors, offering panoramic views of the surrounding rice fields and the distant mountains from upper-level apartments.</p><p>The project was designed for the modern nomad and short-term rental market: each apartment features fully equipped kitchens, fast fibre internet, and hotel-quality linens provided as standard by the on-site management team. A communal rooftop pool, co-working space and daily breakfast service are included in the resident offering.</p><p>Completed in Q4 2023 and now fully operational, Sunny Apart is already delivering rental returns for early investors. Located minutes from Canggu\'s famous beach clubs, cafes and surf scene, demand for short-stay accommodation in this micro-market continues to outpace supply.</p>',
+    features: ['200m to Batu Belig Beach','Rice field & mountain views','Rooftop pool','Co-working space','Daily breakfast service','Fast fibre WiFi','Hotel-quality furnishings','Fully equipped kitchens','Airbnb-optimised','Property management','Completed & income-generating','Legal leasehold structure'],
+    mapBbox: '115.116%2C-8.689%2C115.156%2C-8.659', mapLat: '-8.674', mapLon: '115.136',
+    address: 'Batu Belig, Seminyak, Kuta Utara, Badung Regency, Bali',
+    similar: ['sunny-ocean-berawa','sunny-ocean','laguna-lakelands']
+  },
+
+  '250-city-road': {
+    name: '250 City Road',
+    developer: 'Berkeley Group',
+    location: 'UK, London, Islington',
+    country: 'Europe', region: 'London',
+    price: '$1.10M – $2.11M', priceNote: 'USD',
+    status: 'completed', completion: 'Q4 2023',
+    type: 'Residential', beds: '1 – 3 bedrooms', area: '55 – 160 m²',
+    units: '877 units', roi: '4 – 6% p.a.',
+    badges: ['Popular'],
+    img: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80'
+    ],
+    about: '<p>250 City Road is a landmark development by Berkeley Group, designed by Foster + Partners — the practice responsible for the Gherkin, Millbank Tower and Wembley Stadium. Set in Islington, one of London\'s most vibrant and culturally rich inner-city boroughs, the building defines a new standard for luxury residential living in the capital.</p><p>The development comprises a 37-storey tower and two mid-rise buildings, collectively offering 877 residences across a private 2.5-acre estate. Residents enjoy direct access to a comprehensive amenity suite curated in collaboration with The Berkeley Hotel: a 25-metre pool, private spa, cinema room, business lounge and private dining room with chef\'s kitchen.</p><p>City Road sits at the intersection of the Silicon Roundabout tech corridor, the City of London financial district and the cultural heartland of Islington and Shoreditch. This convergence of economic activity drives consistently strong rental demand, with average residential yields above the London Prime Central benchmark.</p>',
+    features: ['Foster + Partners design','25m private pool','Private spa & sauna','Cinema room','Business lounge','Private dining room','Concierge','Valet parking','Cycle storage','EV charging','24/7 security','Old Street (5 min walk)'],
+    mapBbox: '-0.107%2C51.523%2C-0.087%2C51.543', mapLat: '51.533', mapLon: '-0.097',
+    address: '250 City Road, London EC1V 2PU, United Kingdom',
+    similar: ['aegean-heights','quinta-da-luz','the-source']
+  },
+
+  'aegean-heights': {
+    name: 'Aegean Heights',
+    developer: 'GEK Terna Group',
+    location: 'Greece, Athens, Glyfada',
+    country: 'Europe', region: 'Athens',
+    price: 'from €390,000', priceNote: 'EUR',
+    status: 'construction', completion: 'Q3 2026',
+    type: 'Residential', beds: '2 – 4 bedrooms', area: '90 – 240 m²',
+    units: '64 apartments', roi: '4 – 6% p.a.',
+    badges: ['Residence permit'],
+    img: 'https://images.unsplash.com/photo-1503152394-c571994fd383?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1503152394-c571994fd383?w=900&q=80',
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80'
+    ],
+    about: '<p>Aegean Heights is a prestigious apartment complex in Glyfada — the most sought-after coastal suburb of Athens, often described as the "Cannes of Greece" for its glamorous marina, international dining scene and upscale shopping. The development sits just 200 metres from the Saronic Gulf, offering sea views from upper-level residences.</p><p>The project qualifies for the Greece Golden Visa programme: a purchase of €250,000 or above grants a 5-year renewable residence permit for the buyer and immediate family, including access to all 27 EU Schengen Area countries. The Golden Visa programme has made Greece a leading choice for international investors seeking EU residency through property.</p><p>Designed by a leading Athens architectural firm, Aegean Heights features a sleek contemporary façade with large terraces and floor-to-ceiling glazing. Residents benefit from a rooftop pool with panoramic Aegean views, a gym, underground parking and a 24-hour concierge. The building\'s proximity to Glyfada\'s tram stop and express highway provides swift access to central Athens (25 minutes) and the international airport (20 minutes).</p>',
+    features: ['Greece Golden Visa eligible','Saronic Gulf views','Rooftop pool','200m to seafront','Gym','Underground parking','Tram access (3 min)','Athens airport (20 min)','Glyfada Marina nearby','Concierge','Smart home','EU Schengen access'],
+    mapBbox: '23.732%2C37.859%2C23.772%2C37.889', mapLat: '37.874', mapLon: '23.752',
+    address: 'Glyfada, Athens 16675, Greece',
+    similar: ['quinta-da-luz','250-city-road','the-source']
+  },
+
+  'quinta-da-luz': {
+    name: 'Quinta da Luz',
+    developer: 'Vanguard Properties',
+    location: 'Portugal, Algarve',
+    country: 'Europe', region: 'Algarve',
+    price: 'from €620,000', priceNote: 'EUR',
+    status: 'completed', completion: 'Q3 2023',
+    type: 'Villas', beds: '3 – 5 bedrooms', area: '200 – 450 m²',
+    units: '28 villas', roi: '4 – 7% p.a.',
+    badges: ['Residence permit'],
+    img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80',
+      'https://images.unsplash.com/photo-1503152394-c571994fd383?w=900&q=80',
+      'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80'
+    ],
+    about: '<p>Quinta da Luz is an exclusive collection of 28 luxury villas in the Algarve — consistently ranked among Europe\'s top resort destinations and home to Portugal\'s finest golf courses, beaches and lifestyle amenities. The development enjoys a privileged hilltop position with panoramic views across the Atlantic Ocean and the surrounding pine forests.</p><p>Each villa is set on a private plot of 800 to 2,000 m², surrounded by mature Mediterranean landscaping. Architecturally, the homes combine whitewashed Algarvian vernacular with contemporary interior design: open-plan social spaces, high ceilings, imported stone finishes and infinity pools that appear to merge with the ocean horizon.</p><p>Quinta da Luz qualifies for the Portugal Golden Visa programme for purchases above €500,000, granting EU residency and ultimately citizenship eligibility to buyers and their families. Portugal\'s NHR (Non-Habitual Resident) tax regime also offers significant tax advantages for buyers relocating to Portugal. The Algarve\'s 300-day sunshine calendar, world-class golf and easy access from major European cities ensure consistent rental demand throughout the year.</p>',
+    features: ['Portugal Golden Visa eligible','Atlantic Ocean views','Private plots 800–2,000 m²','Infinity pool (each villa)','5-star golf courses nearby','Faro Airport (30 min)','300 days sunshine p.a.','NHR tax regime eligible','Private terraces','Mature gardens','Smart home','Property management'],
+    mapBbox: '-8.305%2C37.078%2C-8.265%2C37.108', mapLat: '37.093', mapLon: '-8.285',
+    address: 'Luz, Lagos, Algarve 8600-153, Portugal',
+    similar: ['aegean-heights','250-city-road','sunny-moon']
+  },
+
+  'tropicana-cenang': {
+    name: 'Tropicana Cenang',
+    developer: 'Tropicana Corporation',
+    location: 'Malaysia, Langkawi, Pantai Cenang',
+    country: 'Malaysia', region: 'Langkawi',
+    price: '$97,050 – $388,450', priceNote: 'USD',
+    status: 'construction', completion: 'Q1 2026',
+    type: 'Serviced suites & retail', beds: 'Studios – 2 bedrooms', area: 'from 42 m²',
+    units: '420+ units', roi: '7 – 9% p.a.',
+    badges: ['Sea view', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=900&q=80',
+      'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=900&q=80',
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+      'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=900&q=80',
+      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&q=80'
+    ],
+    about: '<p>Tropicana Cenang is a beachfront mixed-use development on Pantai Cenang — Langkawi\'s most popular tourist beach — combining serviced suites, premium retail and a luxury 5-star hotel under one master-planned destination. The project offers buyers direct beach access, hotel-grade amenities and integrated rental management from day one.</p><p>Langkawi has been Malaysia\'s leading tax-free island destination for over two decades, drawing more than 3 million visitors annually before the global tourism reset and now back at full strength. The duty-free status, UNESCO Geopark designation and direct flights from Kuala Lumpur, Singapore and across the region keep occupancy rates among the highest in Southeast Asia.</p><p>Tropicana Corporation is one of Malaysia\'s most established developers with a 40-year track record across residential, commercial and resort properties. The Cenang project delivers serviced units from 42 m², all fully furnished and managed under a hotel rental pool — making it a true turn-key investment with no operational involvement required from the owner.</p>',
+    features: ['Beachfront location','5-star hotel on-site','Pantai Cenang access','Hotel rental pool','Tax-free island','UNESCO Geopark','Multiple swimming pools','Spa & wellness','Premium retail mall','Restaurants on-site','Concierge','24/7 security','Smart home systems','Property management'],
+    mapBbox: '99.715%2C6.285%2C99.755%2C6.315', mapLat: '6.300', mapLon: '99.735',
+    address: 'Pantai Cenang, Mukim Kedawang, 07000 Langkawi, Kedah, Malaysia',
+    similar: ['sunny-moon','sunny-ocean-berawa','cassia-rama-9']
+  },
+
+  'skala-villa': {
+    name: 'Skala Villa',
+    developer: 'Qatari Diar',
+    location: 'Qatar, Lusail City, Marina District',
+    country: 'Qatar', region: 'Lusail',
+    price: '$968,360 – $4.86M', priceNote: 'USD',
+    status: 'construction', completion: 'Q2 2026',
+    type: 'Luxury villas', beds: '4 – 6 bedrooms', area: '480 – 920 m²',
+    units: '64 villas', roi: '6 – 8% p.a.',
+    badges: ['Sea view', 'Top offer'],
+    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=80'
+    ],
+    about: '<p>Skala Villa is an exclusive enclave of 64 luxury waterfront villas in Lusail Marina — the centrepiece of Qatar\'s flagship master-planned city, just 15 km north of Doha. Lusail has emerged as one of the Gulf region\'s most ambitious urban projects, hosting major sporting venues, the Lusail Boulevard retail district and a fully integrated metro network.</p><p>Each villa is positioned on a private waterfront plot with direct marina access, a private pool and panoramic views over the Arabian Gulf. Interior architecture combines contemporary Mediterranean lines with traditional Qatari craftsmanship, with imported stone finishes, custom cabinetry and full-height glazing throughout the social areas. Villa sizes range from 480 m² (4-bedroom) to 920 m² (6-bedroom with private pool deck and rooftop terrace).</p><p>Qatar\'s residence permit programme allows villa buyers and their families to obtain long-term residency, with a path to permanent status. The country\'s zero-income-tax regime, robust infrastructure and stable currency (QAR pegged to USD) make Lusail one of the most compelling waterfront markets in the Middle East. Qatari Diar — the property arm of the Qatar Investment Authority — guarantees both build quality and long-term capital protection.</p>',
+    features: ['Waterfront plot','Private pool (each villa)','Direct marina access','Lusail Marina views','Qatar residency eligible','Zero income tax','Lusail Metro nearby','Lusail Boulevard nearby','Concierge','24/7 security','Private garden','Smart home','Imported finishes','Property management'],
+    mapBbox: '51.485%2C25.418%2C51.525%2C25.448', mapLat: '25.433', mapLon: '51.505',
+    address: 'Lusail Marina, Lusail City, Qatar',
+    similar: ['the-source','aldar-haven-verdes','gardenia-bay']
+  }
+
+}; // end PROPERTIES
+
+// ═══════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════
+var lbImages = [];
+var lbIndex  = 0;
+
+function render() {
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id') || '';
+  var p  = PROPERTIES[id];
+
+  if (!p) {
+    document.getElementById('pd-name').textContent = 'Property not found';
+    document.getElementById('pd-about').innerHTML = '<p>Please return to <a href="residential.html">all projects</a>.</p>';
+    return;
+  }
+
+  // Page title & breadcrumb
+  document.getElementById('page-title').textContent = p.name + ' — Moonhouse Investments';
+  document.getElementById('pd-breadcrumb').textContent = p.name;
+
+  // Hero
+  document.getElementById('pd-hero-bg').style.backgroundImage = 'url(' + p.img + ')';
+  document.getElementById('pd-name').textContent = p.name;
+  document.getElementById('pd-location').textContent = p.location;
+  document.getElementById('pd-price').textContent = p.price + ' ' + p.priceNote;
+
+  var statusDot = p.status === 'completed' ? 'status-done' : 'status-build';
+  var statusTxt = p.status === 'completed' ? 'Completed' : 'Under construction';
+  document.getElementById('pd-status-row').innerHTML =
+    '<span class="status-dot ' + statusDot + '"></span>' + statusTxt + ' &nbsp;·&nbsp; ' + p.completion;
+
+  // Badges
+  var bHtml = (p.badges || []).map(function(b) {
+    return '<span class="badge ' + (BADGE_CLASS[b] || 'badge-top') + '">' + b + '</span>';
+  }).join('');
+  document.getElementById('pd-badges').innerHTML = bHtml;
+
+  // Stats bar
+  var statsData = [
+    ['Developer', p.developer],
+    ['Type', p.type],
+    ['Bedrooms', p.beds],
+    ['Total area', p.area],
+    ['Units', p.units],
+    ['Completion', p.completion],
+    ['Est. ROI', p.roi]
+  ];
+  document.getElementById('pd-stats').innerHTML = statsData.map(function(s) {
+    return '<div class="pd-stat"><p class="pd-stat-label">' + s[0] + '</p><p class="pd-stat-val">' + s[1] + '</p></div>';
+  }).join('');
+
+  // About
+  document.getElementById('pd-about').innerHTML = p.about;
+
+  // Features
+  var iconSvg = '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>';
+  document.getElementById('pd-features').innerHTML = (p.features || []).map(function(f) {
+    return '<div class="pd-feature"><span class="pd-feature-icon">' + iconSvg + '</span>' + f + '</div>';
+  }).join('');
+
+  // Gallery + lightbox
+  lbImages = p.gallery || [];
+  document.getElementById('pd-gallery').innerHTML = lbImages.map(function(src, i) {
+    return '<div class="pd-gallery-item" style="background-image:url(' + src + ')" onclick="openLightbox(' + i + ')" title="Click to enlarge"></div>';
+  }).join('');
+
+  // Map
+  var mapSrc = 'https://www.openstreetmap.org/export/embed.html?bbox=' + p.mapBbox + '&layer=mapnik&marker=' + p.mapLat + '%2C' + p.mapLon;
+  document.getElementById('pd-map').src = mapSrc;
+  document.getElementById('pd-address').textContent = p.address;
+  document.getElementById('pd-map-link').href = 'https://www.openstreetmap.org/?mlat=' + p.mapLat + '&mlon=' + p.mapLon + '#map=16/' + p.mapLat + '/' + p.mapLon;
+
+  // Aside price card
+  document.getElementById('pd-aside-price').textContent = p.price;
+  document.getElementById('pd-aside-note').textContent = p.priceNote + ' · ' + p.completion;
+  document.getElementById('pd-aside-features').innerHTML = [
+    ['Developer', p.developer],
+    ['Bedrooms', p.beds],
+    ['Area', p.area],
+    ['Units', p.units],
+    ['ROI', p.roi]
+  ].map(function(r) {
+    return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>';
+  }).join('');
+
+  // Inquiry message pre-fill
+  var msg = document.getElementById('inquiry-message');
+  if (msg) msg.value = 'I am interested in ' + p.name + ' (' + p.location + '). Please send me more details.';
+
+  // Similar properties
+  var simGrid = document.getElementById('pd-similar');
+  var simIds  = (p.similar || []).slice(0, 3);
+  simGrid.innerHTML = simIds.map(function(sid) {
+    var sp = PROPERTIES[sid];
+    if (!sp) return '';
+    var statusDot2 = sp.status === 'completed' ? 'status-done' : 'status-build';
+    var statusTxt2 = sp.status === 'completed' ? 'Completed' : 'Under construction';
+    return [
+      '<a href="property.html?id=' + sid + '" style="text-decoration:none;color:inherit;">',
+        '<div class="prop-card">',
+          '<div class="prop-img" style="background-image:url(' + sp.img + ')">',
+            '<div class="prop-badges">',
+              (sp.badges || []).map(function(b){ return '<span class="badge ' + (BADGE_CLASS[b]||'badge-top') + '">' + b + '</span>'; }).join(''),
+            '</div>',
+          '</div>',
+          '<div class="prop-body">',
+            '<p class="prop-location">' + sp.location + '</p>',
+            '<p class="prop-name">' + sp.name + '</p>',
+            '<p class="prop-price">' + sp.price + ' ' + sp.priceNote + '</p>',
+            '<div class="prop-footer">',
+              '<span><span class="status-dot ' + statusDot2 + '"></span>' + statusTxt2 + '</span>',
+              '<span>' + sp.completion + '</span>',
+            '</div>',
+          '</div>',
+        '</div>',
+      '</a>'
+    ].join('');
+  }).join('');
+}
+
+// ─── LIGHTBOX ────────────────────────────────────────
+function openLightbox(i) {
+  lbIndex = i;
+  document.getElementById('lb-img').src = lbImages[i];
+  document.getElementById('lb-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lb-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbNav(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  document.getElementById('lb-img').src = lbImages[lbIndex];
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb-overlay').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'ArrowLeft')  lbNav(-1);
+});
+
+// ─── INQUIRY FORM ────────────────────────────────────
+function handleInquiry(e) {
+  e.preventDefault();
+  document.getElementById('inquiry-form').style.display = 'none';
+  document.getElementById('inquiry-success').style.display = 'block';
+}
+
+// ─── INIT ────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

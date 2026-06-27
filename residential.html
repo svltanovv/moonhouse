@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Residential Projects — Moonhouse Investments</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Responsive overrides for inline-styled sections ── */
+#res-filter-section { padding: 40px 80px; background: var(--white); }
+@media (max-width: 900px) {
+  #res-filter-section { padding: 28px 20px !important; }
+}
+@media (max-width: 480px) {
+  #res-filter-section { padding: 20px 16px !important; }
+}
+/* Make each country section's padding responsive */
+section.country-section { padding: 64px 80px; }
+@media (max-width: 900px) {
+  section.country-section { padding: 48px 20px; }
+}
+@media (max-width: 480px) {
+  section.country-section { padding: 36px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="moonhouse-logo.svg" alt="Moonhouse Investments"></a>
+  <ul class="nav-links">
+    <li class="has-dropdown"><a href="projects.html" class="active">Projects ▾</a>
+      <ul class="dropdown">
+        <li><a href="projects.html">All Projects</a></li>
+        <li><a href="commercial.html">Commercial</a></li>
+        <li><a href="residential.html" class="active">Residential</a></li>
+        <li><a href="top-offers.html">Top Offers</a></li>
+      </ul>
+    </li>
+    <li><a href="investments.html">Investments</a></li>
+    <li><a href="citizenship.html">Citizenship &amp; Residence</a></li>
+    <li class="has-dropdown"><a href="about.html">About Us ▾</a>
+      <ul class="dropdown">
+        <li><a href="about.html">About Company</a></li>
+        <li><a href="about.html#team">Team</a></li>
+        <li><a href="about.html#partners">Partners</a></li>
+        <li><a href="about.html#reviews">Reviews</a></li>
+      </ul>
+    </li>
+    <li><a href="contacts.html">Contacts</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a href="tel:+971547563668" class="nav-phone">+971 54 756 3668</a>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- SOCIAL SIDEBAR -->
+<div class="social-sidebar">
+  <a href="https://wa.me/971547563668" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a href="https://t.me/moonhouseinvest" target="_blank" rel="noopener" title="Telegram"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.277-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80')"></div>
+  <div class="page-hero-content">
+    <p class="hero-tag">Residential real estate</p>
+    <h1>Properties for <em>living</em> &amp; investment abroad</h1>
+    <p>Browse our curated selection of residential properties across 20+ countries — from Bali villas to London apartments.</p>
+  </div>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;/&nbsp; <a href="#">Projects</a> &nbsp;/&nbsp; <span>Residential</span>
+</div>
+
+<!-- FILTER -->
+<section id="res-filter-section">
+  <div class="search-row" style="background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:20px 24px;">
+    <div class="search-field">
+      <label style="color:var(--gold)">Country</label>
+      <select id="country-filter" style="background:var(--white);border:1px solid var(--border);color:var(--text);">
+        <option value="">All countries</option>
+        <option value="UAE">UAE</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="Europe">Europe &amp; UK</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Greece">Greece</option>
+        <option value="Portugal">Portugal</option>
+        <option value="Malaysia">Malaysia</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label style="color:var(--gold)">Type</label>
+      <select style="background:var(--white);border:1px solid var(--border);color:var(--text);">
+        <option>All types</option>
+        <option>Apartment</option><option>Villa</option><option>Penthouse</option>
+        <option>Townhouse</option><option>Studio</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label style="color:var(--gold)">Budget, $</label>
+      <select style="background:var(--white);border:1px solid var(--border);color:var(--text);">
+        <option>Any budget</option>
+        <option>up to 150 000</option><option>150 000 – 400 000</option>
+        <option>400 000 – 1 000 000</option><option>from 1 000 000</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label style="color:var(--gold)">Status</label>
+      <select style="background:var(--white);border:1px solid var(--border);color:var(--text);">
+        <option>Any status</option><option>Under construction</option><option>Completed</option>
+      </select>
+    </div>
+    <button class="btn-gold">Apply</button>
+  </div>
+</section>
+
+<!-- UAE PROPERTIES -->
+<section class="properties country-section" data-country="UAE">
+  <p class="section-label">UAE</p>
+  <h2 class="section-title" style="font-size:32px;margin-bottom:32px;">United Arab Emirates</h2>
+  <div class="props-grid">
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-hot">Hot offer</span><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Dubai, Dubailand</p>
+        <p class="prop-name">Aldar Haven Verdes</p>
+        <p class="prop-price">$269,500 – $762,300 USD</p>
+        <p class="prop-desc">By Aldar Properties. Large green community with cafes, wellness centers, pools, kindergarten and school.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q3 2027</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Top offer</span><span class="badge badge-invest">Investments</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Abu Dhabi, Saadiyat Island</p>
+        <p class="prop-name">The Source (SRC)</p>
+        <p class="prop-price">$626,000 – $1.83M USD</p>
+        <p class="prop-desc">Near Zayed National Museum, Museum of Natural History and Abrahamic Family House.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q4 2026</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Abu Dhabi, Yas Island</p>
+        <p class="prop-name">Gardenia Bay (GBY)</p>
+        <p class="prop-price">$220,000 – $844,813 USD</p>
+        <p class="prop-desc">Exclusive project on Yas Island. Arabian Gulf shores with premium amenities.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q2 2027</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-sea">Sea view</span><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Abu Dhabi, Yas Island</p>
+        <p class="prop-name">Yas Golf Collection (YGC)</p>
+        <p class="prop-price">$376,000 – $600,000 USD</p>
+        <p class="prop-desc">1,062 residential units overlooking Yas Links Golf Course, mangroves and Arabian Gulf.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q3 2025</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-sea">Sea view</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Ras Al Khaimah, Mina Al Arab</p>
+        <p class="prop-name">Bay Views (BVS)</p>
+        <p class="prop-price">$144,300 – $381,000 USD</p>
+        <p class="prop-desc">Views of Arabian Gulf and Hajar Mountains. Part of Mina Al Arab master community.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q3 2025</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-hot">Hot offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UAE, Abu Dhabi, Saadiyat Island</p>
+        <p class="prop-name">Manarat Living</p>
+        <p class="prop-price">from $286,000 USD</p>
+        <p class="prop-desc">Cultural District. 1–2 bedrooms, 30–148 m². Close to world-class museums and galleries.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q1 2026</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THAILAND PROPERTIES -->
+<section class="country-section" data-country="Thailand" style="background:var(--cream);">
+  <p class="section-label">Thailand</p>
+  <h2 class="section-title" style="font-size:32px;margin-bottom:32px;">Thailand</h2>
+  <div class="props-grid">
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-hot">Hot offer</span><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Thailand, Bangkok</p>
+        <p class="prop-name">Cassia Rama 9</p>
+        <p class="prop-price">$136,930 – $273,900 USD</p>
+        <p class="prop-desc">Bangkok project creates a new level of comfortable living with high-quality world-class services.</p>
+        <div class="prop-footer"><span><span class="status-dot status-done"></span>Completed</span><span>Q2 2024</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-sea">Sea view</span><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Thailand, Phuket, Rawai</p>
+        <p class="prop-name">Sunny Moon (SMN)</p>
+        <p class="prop-price">from $121,300 USD</p>
+        <p class="prop-desc">2 blocks, 228 apartments, 8 floors. 750m from beach. Layouts 33–134 m².</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q4 2025</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Popular</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Thailand, Phuket, Laguna</p>
+        <p class="prop-name">Laguna Lakelands (LLR)</p>
+        <p class="prop-price">$250,000 – $530,000 USD</p>
+        <p class="prop-desc">Low-rise development with lagoon views. Near Boat Avenue, Central Porto de Phuket.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q1 2025</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INDONESIA PROPERTIES -->
+<section class="properties country-section" data-country="Indonesia">
+  <p class="section-label">Indonesia</p>
+  <h2 class="section-title" style="font-size:32px;margin-bottom:32px;">Bali, Indonesia</h2>
+  <div class="props-grid">
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Top offer</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Indonesia, Bali, Canggu, Berawa</p>
+        <p class="prop-name">Sunny Ocean Berawa (SBW)</p>
+        <p class="prop-price">$250,000 – $500,000 USD</p>
+        <p class="prop-desc">30 modern villas, 3 minutes from Berawa Beach. Premium finishes throughout.</p>
+        <div class="prop-footer"><span><span class="status-dot status-done"></span>Completed</span><span>Q1 2024</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-sea">Sea view</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Indonesia, Bali, Bukit</p>
+        <p class="prop-name">Sunny Ocean (SOP)</p>
+        <p class="prop-price">$374,400 – $375,000 USD</p>
+        <p class="prop-desc">Sea view. 250m from Indian Ocean. Modern architecture with tropical landscaping.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q4 2025</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Top offer</span><span class="badge badge-sold">Sold</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Indonesia, Bali, Canggu</p>
+        <p class="prop-name">Sunny Apart (SPT)</p>
+        <p class="prop-price">from $180,000 USD</p>
+        <p class="prop-desc">Luxury apartments 200m from Batu Belig beach. Mountain and rice field views. Floor 4, 43 m².</p>
+        <div class="prop-footer"><span><span class="status-dot status-done"></span>Completed</span><span>Q4 2023</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- UK & EUROPE PROPERTIES -->
+<section class="country-section" data-country="Europe" style="background:var(--cream);">
+  <p class="section-label">Europe &amp; UK</p>
+  <h2 class="section-title" style="font-size:32px;margin-bottom:32px;">Europe &amp; United Kingdom</h2>
+  <div class="props-grid">
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Popular</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">UK, London, Islington</p>
+        <p class="prop-name">250 City Road</p>
+        <p class="prop-price">$1.10M – $2.11M USD</p>
+        <p class="prop-desc">Designed by Foster + Partners. Epitome of luxury living in one of London's most vibrant neighbourhoods.</p>
+        <div class="prop-footer"><span><span class="status-dot status-done"></span>Completed</span><span>Q4 2023</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1503152394-c571994fd383?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Residence permit</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Greece, Athens, Glyfada</p>
+        <p class="prop-name">Aegean Heights</p>
+        <p class="prop-price">from €390,000 EUR</p>
+        <p class="prop-desc">Luxury apartments in prestigious Athens neighbourhood qualifying for Greece Golden Visa.</p>
+        <div class="prop-footer"><span><span class="status-dot status-build"></span>Under construction</span><span>Q3 2026</span></div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=600&q=75')">
+        <div class="prop-badges"><span class="badge badge-top">Residence permit</span></div>
+      </div>
+      <div class="prop-body">
+        <p class="prop-location">Portugal, Algarve</p>
+        <p class="prop-name">Quinta da Luz</p>
+        <p class="prop-price">from €620,000 EUR</p>
+        <p class="prop-desc">Exclusive villas in one of Europe's most popular resort regions. Qualifies for Portugal Golden Visa.</p>
+        <div class="prop-footer"><span><span class="status-dot status-done"></span>Completed</span><span>Q3 2023</span></div>
+      </div>
+    </div>
+
+  </div>
+  <a href="contacts.html" class="see-all">Request a consultation →</a>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-left">
+    <div>
+      <p class="newsletter-label-small">Stay informed</p>
+      <h2 class="newsletter-title">Subscribe to our newsletter</h2>
+      <p class="newsletter-sub">Get the latest investment opportunities, market insights and exclusive deals — straight to your inbox.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="Your email address">
+      <button type="submit" class="btn-gold">Subscribe</button>
+    </form>
+  </div>
+  <div class="footer-map-box">
+    <p class="newsletter-label-small">Our office</p>
+    <p class="map-address">UAE, Abu Dhabi, Dar Al Salam Building, Liwa St. Office 221</p>
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=54.352%2C24.474%2C54.372%2C24.494&layer=mapnik&marker=24.484%2C54.362" frameborder="0" scrolling="no" title="Office location"></iframe>
+    <a href="https://www.openstreetmap.org/?mlat=24.484&mlon=54.362#map=16/24.484/54.362" target="_blank" rel="noopener" class="map-link">Open in maps →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="footer-logo"><img src="moonhouse-logo.svg" alt="Moonhouse Investments"></a>
+      <p class="footer-about">We help private clients invest in international real estate. Offices in Dubai, New York, Astana and Singapore. Founded 1998.</p>
+      <div class="footer-contact">
+        <div>UAE, Abu Dhabi, Dar Al Salam Building, Liwa St. Office 221</div>
+        <div><a href="tel:+971547563668">+971 54 756 3668</a></div>
+        <div><a href="mailto:info@moonhouse.investments">info@moonhouse.investments</a></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Properties</h4>
+      <ul>
+        <li><a href="residential.html">Residential projects</a></li>
+        <li><a href="commercial.html">Commercial projects</a></li>
+        <li><a href="investments.html">Investment projects</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="about.html#team">Team</a></li>
+        <li><a href="about.html#partners">Partners</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Citizenship &amp; Residence</h4>
+      <ul>
+        <li><a href="citizenship.html">Residence programs</a></li>
+        <li><a href="citizenship.html#citizenship">Citizenship by investment</a></li>
+        <li><a href="citizenship.html#uae">UAE Golden Visa</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Moonhouse Investments Limited. All rights reserved.</span>
+    <span><a href="#" style="color:rgba(255,255,255,0.25);text-decoration:none;">Privacy Policy</a></span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+(function() {
+  var select = document.getElementById('country-filter');
+  var sections = document.querySelectorAll('section[data-country]');
+  var applyBtn = document.querySelector('.search-row .btn-gold');
+
+  function applyFilter() {
+    var val = select ? select.value : '';
+    sections.forEach(function(sec) {
+      if (!val) {
+        sec.style.display = '';
+      } else {
+        sec.style.display = sec.getAttribute('data-country') === val ? '' : 'none';
+      }
+    });
+    // Update page hero subtitle
+    var heroSub = document.querySelector('.page-hero-content p');
+    if (heroSub && val) {
+      heroSub.textContent = 'Showing properties in ' + val + '. Use the filter below to explore other countries.';
+    }
+  }
+
+  // Read URL param on load
+  var params = new URLSearchParams(window.location.search);
+  var urlCountry = params.get('country');
+  if (urlCountry && select) {
+    // Map some URL values to option values
+    var map = { 'UK': 'Europe', 'Greece': 'Europe', 'Portugal': 'Europe' };
+    var mapped = map[urlCountry] || urlCountry;
+    select.value = mapped;
+    applyFilter();
+    // Smooth scroll to first visible section
+    setTimeout(function() {
+      var first = document.querySelector('section[data-country]:not([style*="none"])');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+
+  if (applyBtn) {
+    applyBtn.addEventListener('click', applyFilter);
+  }
+  if (select) {
+    select.addEventListener('change', applyFilter);
+  }
+})();
+</script>
+<script>
+// ── Make prop-cards clickable ──────────────────────────
+(function() {
+  var NAME_TO_ID = {
+    'Aldar Haven Verdes': 'aldar-haven-verdes',
+    'The Source (SRC)': 'the-source',
+    'Gardenia Bay (GBY)': 'gardenia-bay',
+    'Yas Golf Collection (YGC)': 'yas-golf-collection',
+    'Bay Views (BVS)': 'bay-views',
+    'Manarat Living': 'manarat-living',
+    'Cassia Rama 9': 'cassia-rama-9',
+    'Sunny Moon (SMN)': 'sunny-moon',
+    'Laguna Lakelands (LLR)': 'laguna-lakelands',
+    'Sunny Ocean Berawa (SBW)': 'sunny-ocean-berawa',
+    'Sunny Ocean (SOP)': 'sunny-ocean',
+    'Sunny Apart (SPT)': 'sunny-apart',
+    '250 City Road': '250-city-road',
+    'Aegean Heights': 'aegean-heights',
+    'Quinta da Luz': 'quinta-da-luz',
+    'Tropicana Cenang': 'tropicana-cenang',
+    'Tropicana Cenang (CNG)': 'tropicana-cenang',
+    'Skala Villa': 'skala-villa',
+    'Skala Villa (SKV)': 'skala-villa'
+  };
+  document.querySelectorAll('.prop-card').forEach(function(card) {
+    var nameEl = card.querySelector('.prop-name');
+    if (!nameEl) return;
+    var id = NAME_TO_ID[nameEl.textContent.trim()];
+    if (!id) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function() {
+      window.location.href = 'property.html?id=' + id;
+    });
+  });
+})();
+</script>
+</body>
+</html>
